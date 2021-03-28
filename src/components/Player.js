@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -6,7 +6,7 @@ import {
   faAngleRight,
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
-import userEvent from "@testing-library/user-event";
+
 const Player = ({ currentSong, isPlaying, setIsPlaying,audioRef,setSongInfo,songInfo }) => {
   const playSongHandler = () => {
     if (isPlaying) {
@@ -35,7 +35,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying,audioRef,setSongInfo,song
         </p>
         <input 
         min={0}
-        max={songInfo.duration} 
+        max={songInfo.duration || 0} 
         onChange={dragHandler} 
         value={songInfo.currentTime}
         type="range" />
