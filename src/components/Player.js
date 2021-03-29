@@ -6,6 +6,7 @@ import {
   faAngleRight,
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
+import { playAudio } from "./util"; 
 const Player = ({ currentSong, isPlaying, setIsPlaying,audioRef,setSongInfo,songInfo,songs,setCurrentSong,setSongs}) => {
   //UseEffect
   useEffect(()=>{
@@ -46,6 +47,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying,audioRef,setSongInfo,song
       setCurrentSong(songs[(currentIndex-1) % songs.length]);
         
     }
+    playAudio(isPlaying,audioRef);
   }
   const dragHandler = (e) =>{
     audioRef.current.currentTime = e.target.value;
