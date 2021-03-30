@@ -58,11 +58,8 @@ const Player = ({ currentSong, isPlaying, setIsPlaying,audioRef,setSongInfo,song
       Math.floor(time/60)+":"+("0"+Math.floor(time %60)).slice(-2)
     );
   }
-  const trackAnim = {
-    transform: `translateX:(${songInfo.animationPercentage}%) `,
-  };
   return (
-    <div className="player">
+    <div className="player" >
       <div className="time-control">
         <p>
           {getTime(songInfo.currentTime)}
@@ -76,7 +73,9 @@ const Player = ({ currentSong, isPlaying, setIsPlaying,audioRef,setSongInfo,song
         type="range" 
           className="slider"
         />
-        <div style={{transform:`translateX:(${songInfo.animationPercentage}%) !important`}} className="animate-track" >
+        <div style={{
+          transform: `translate(${songInfo.animationPercentage}%)`,
+          }} className="animate-track" >
         </div>
         </div>
         <p>{songInfo.duration ? getTime(songInfo.duration - songInfo.currentTime):'0:00'}</p>

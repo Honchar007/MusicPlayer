@@ -24,7 +24,7 @@ function App() {
     const roundedCurrent = Math.round(current);
     const roundedDuration = Math.round(duration);
     const roundedPercentage = Math.round((roundedCurrent/roundedDuration)*100);
-    setSongInfo({ ...songInfo, currentTime: current, duration: duration ,animationPercentage:roundedPercentage})
+    setSongInfo({ ...songInfo, currentTime: current, duration: duration ,animationPercentage:roundedPercentage});
   }
   return (
     <div className="App">
