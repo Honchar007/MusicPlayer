@@ -34,20 +34,20 @@ const Player = ({ currentSong, isPlaying, setIsPlaying,audioRef,setSongInfo,song
       setIsPlaying(!isPlaying);
     }
   };
-  const skipTrackHandler = (direction) =>{
+  const skipTrackHandler = async (direction) =>{
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     if(direction === 'skip-forward')
     {
-      setCurrentSong(songs[(currentIndex+1) % songs.length]);
+     await setCurrentSong(songs[(currentIndex+1) % songs.length]);
     }
     else{
       if((currentIndex-1) % songs.length === -1)
-        setCurrentSong(songs[songs.length-1]);
+      await setCurrentSong(songs[songs.length-1]);
       else
-      setCurrentSong(songs[(currentIndex-1) % songs.length]);
+      await setCurrentSong(songs[(currentIndex-1) % songs.length]);
         
     }
-    playAudio(isPlaying,audioRef);
+    if(isPlaying) audioRef.current.play();
   }
   const dragHandler = (e) =>{
     audioRef.current.currentTime = e.target.value;
@@ -58,7 +58,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying,audioRef,setSongInfo,song
       Math.floor(time/60)+":"+("0"+Math.floor(time %60)).slice(-2)
     );
   }
-  return (
+   return (
     <div className="player" >
       <div className="time-control">
         <p>
@@ -75,7 +75,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying,audioRef,setSongInfo,song
         />
         <div style={{
           transform: `translate(${songInfo.animationPercentage}%)`,
-          }} className="animate-track" >
+          }} className="animate-track" > 
         </div>
         </div>
         <p>{songInfo.duration ? getTime(songInfo.duration - songInfo.currentTime):'0:00'}</p>
